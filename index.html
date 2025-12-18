@@ -45,14 +45,44 @@
 </section>
 
 <section id="contact">
+    <h2>Contact Us</h2>
 
-    <h2>Contact</h2>
-    <p>Email: contact@technova.com</p>
+    <form id="contactForm">
+        <input type="text" id="name" placeholder="Your Name" required><br><br>
+        <input type="email" id="email" placeholder="Your Email" required><br><br>
+        <textarea id="message" placeholder="Your Message" required></textarea><br><br>
+        <button type="submit">Send Message</button>
+    </form>
+
+    <p id="response"></p>
 </section>
 
 <footer>
     <p>© 2025 TechNova Solutions</p>
 </footer>
+<script>
+document.getElementById("contactForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const data = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        message: document.getElementById("message").value
+    };
+
+   const response = await fetch("/contact", {
+
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+    document.getElementById("response").innerText = result.message;
+});
+</script>
 
 </body>
 <nav class="navbar">
