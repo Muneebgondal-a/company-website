@@ -1,6 +1,11 @@
+
+
+
 const express = require("express");
 const app = express();
 const path = require("path");
+const client = require("prom-client");
+client.collectDefaultMetrics();
 
 app.use(express.json());
 
@@ -14,12 +19,13 @@ app.post("/contact", (req, res) => {
 });
 
 // Start server
+app.get("/metrics", async (req, res) => {
+  res.setHeader("Content-Type", client.register.contentType);
+  res.end(await client.register.metrics());
+});
+
 app.listen(3000, () => {
     console.log("Server running at http://localhost:3000");
 });
-app.post("/contact", (req, res) => {
-    console.log("📩 Contact form submitted");
-    console.log("Data received:", req.body);
 
-    res.json({ message: "Form received successfully" });
-});
+
