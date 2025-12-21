@@ -17,3 +17,9 @@ app.post("/contact", (req, res) => {
 app.listen(3000, () => {
     console.log("Server running at http://localhost:3000");
 });
+app.post("/contact", (req, res) => {
+    console.log("📩 Contact form submitted");
+    console.log("Data received:", req.body);
+
+    res.json({ message: "Form received successfully" });
+});
