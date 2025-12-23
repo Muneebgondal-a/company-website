@@ -12,13 +12,14 @@ function logEvent(message) {
 
 // Simulating application events
 setInterval(() => {
-    const events = [
-        "User accessed homepage",
-        "API request received",
-        "Database query executed",
-        "Health check OK",
-        "Background job completed"
-    ];
+   const events = [
+    "User accessed homepage",
+    "API request received",
+    "ERROR: Database connection failed",
+    "FAILED: Payment service timeout",
+    "Health check OK"
+];
+
 
     const randomEvent = events[Math.floor(Math.random() * events.length)];
     logEvent(randomEvent);
