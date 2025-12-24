@@ -2,7 +2,10 @@ global:
   scrape_interval: 5s
 
 scrape_configs:
-  - job_name: "node_app"
-    metrics_path: "/metrics"
+  - job_name: "prometheus"
     static_configs:
-      - targets: ["host.docker.internal:3000"]
+      - targets: ["localhost:9090"]
+
+  - job_name: "aiops_ml"
+    static_configs:
+      - targets: ["host.docker.internal:9100"]
