@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AIOps Dashboard</title>
+</head>
+<body>
+  <h1>AIOps Monitoring Dashboard</h1>
+  <p>Status: <span id="status">Normal</span></p>
+
+  <script>
+    setInterval(() => {
+      fetch("http://localhost:9100/metrics")
+        .then(res => res.text())
+        .then(data => {
+          if (data.includes("aiops_anomaly_detected 1")) {
+            document.getElementById("status").innerText = "Anomaly Detected";
+          } else {
+            document.getElementById("status").innerText = "Normal";
+          }
+        });
+    }, 3000);
+  </script>
+</body>
+</html>
