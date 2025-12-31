@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AIOps Dashboard</title>
+  <style>
+    body { font-family: Arial; text-align: center; margin-top: 50px; }
+    .card { padding: 30px; border-radius: 10px; display: inline-block; }
+    .normal { background: #e0ffe0; color: #006600; }
+    .anomaly { background: #ffe0e0; color: #990000; }
+  </style>
+</head>
+<body>
+
+  <h1>AIOps Monitoring Dashboard</h1>
+  <div id="card" class="card normal">
+    <h2 id="status">Loading...</h2>
+    <p id="time"></p>
+  </div>
+
+<script>
+  document.getElementById("status").innerText = "JS is working";
+  document.getElementById("time").innerText = new Date();
+</script>
+
+
+</body>
+</html>
