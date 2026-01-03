@@ -2,23 +2,43 @@
 <html>
 <head>
   <title>AIOps Dashboard</title>
+  <style>
+    body { font-family: Arial; text-align: center; margin-top: 50px; }
+    .card { padding: 30px; border-radius: 10px; display: inline-block; }
+    .normal { background: #e0ffe0; color: #006600; }
+    .anomaly { background: #ffe0e0; color: #990000; }
+  </style>
 </head>
 <body>
-  <h1>AIOps Monitoring Dashboard</h1>
-  <p>Status: <span id="status">Normal</span></p>
 
-  <script>
-    setInterval(() => {
-      fetch("http://localhost:9100/metrics")
-        .then(res => res.text())
-        .then(data => {
-          if (data.includes("aiops_anomaly_detected 1")) {
-            document.getElementById("status").innerText = "Anomaly Detected";
-          } else {
-            document.getElementById("status").innerText = "Normal";
-          }
-        });
-    }, 3000);
-  </script>
+  <h1>AIOps Monitoring Dashboard</h1>
+  <div id="card" class="card normal">
+    <h2 id="status">Loading...</h2>
+    <p id="time"></p>
+  </div>
+
+<script>
+async function refreshStatus() {
+  try {
+    const res = await fetch("/status");
+    const data = await res.json();
+
+    document.getElementById("status").innerText = data.status;
+    document.getElementById("time").innerText = data.timestamp;
+
+    const card = document.getElementById("card");
+    card.className = "card " +
+      (data.status === "Normal" ? "normal" : "anomaly");
+  } catch (err) {
+    document.getElementById("status").innerText = "Backend not reachable";
+  }
+}
+
+setInterval(refreshStatus, 3000);
+refreshStatus();
+</script>
+
+
+
 </body>
 </html>

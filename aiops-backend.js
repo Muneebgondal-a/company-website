@@ -1,11 +1,11 @@
 // Day 21 - AIOps Backend API
-const path = require("path");
-
 const express = require("express");
 const fs = require("fs");
+const path = require("path");
 
 const app = express();
-const PORT = 4000;
+const PORT = process.env.PORT || 3000;
+
 
 let errorHistory = [];
 const WINDOW = 5;
@@ -46,10 +46,11 @@ app.get("/status", (req, res) => {
     timestamp: new Date()
   });
 });
+
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "dashboard.html"));
 });
 
 app.listen(PORT, () => {
-  console.log(`🚀 AIOps backend running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
