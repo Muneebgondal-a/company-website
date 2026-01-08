@@ -1,35 +1,20 @@
-# Company Website with AIOps Roadmap
+# AIOps Monitoring Dashboard
 
-This project is a professional company portfolio website built as part of my AIOps learning journey.
+This project demonstrates a basic AIOps workflow:
 
-## Features
-- Responsive company website
-- Contact form with Node.js & Express backend
-- Frontend served via backend (production-ready setup)
+- Log generation and collection
+- Backend anomaly detection
+- API exposing system health
+- Web dashboard for monitoring
 
-## Tech Stack
-- HTML, CSS, JavaScript
+### Tech Stack
 - Node.js
 - Express
+- HTML/CSS/JavaScript
 
-## How to Run Locally
-1. Clone the repository
-2. Run `npm install`
-3. Start server using `npm start`
-4. Open browser at `http://localhost:3000`
+### Learning Outcome
+This project helped me understand how real AIOps systems integrate logs,
+backend intelligence, and monitoring dashboards.
 
-## Upcoming
-- Dockerization
-- Cloud deployment
-- Monitoring & AIOps integration
-- 
-## Deployment (Cloud-Ready)
+Built as part of my AIOps learning journey.
 
-This application is fully Dockerized and ready for deployment on any cloud platform
-such as AWS, DigitalOcean, or Azure.
-
-### Run using Docker
-docker build -t company-website .
-docker run -p 3000:3000 company-website
-
-The same setup can be used on cloud servers without code changes.
